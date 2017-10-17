@@ -4,7 +4,7 @@ namespace MathPHP\Probability\Distribution\Continuous;
 use MathPHP\Functions\Support;
 use MathPHP\Exception;
 
-abstract class Continuous extends \MathPHP\Probability\Distribution\Distribution implements ContinuousInterface
+abstract class Continuous extends \MathPHP\Probability\Distribution\Distribution implements ContinuousDistribution
 {
     /**
      * The Inverse CDF of the distribution
