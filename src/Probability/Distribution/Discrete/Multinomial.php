@@ -24,6 +24,9 @@ class Multinomial extends Discrete
      * @param  array $probabilities
      *
      * @return float
+     *
+     * @throws Exception\BadDataException if the number of requencies does not match the number of probabilites
+     *                                    if the probabilityes do not add up to 1
      */
     public static function pmf(array $frequencies, array $probabilities): float
     {

@@ -9,7 +9,6 @@ use MathPHP\Exception;
  */
 class Uniform extends Discrete
 {
-
     /**
      * Distribution parameter bounds limits
      * a ∈ (-∞,∞)
@@ -42,7 +41,7 @@ class Uniform extends Discrete
      * @param int $a lower boundary of the distribution
      * @param int $b upper boundary of the distribution
      *
-     * @throws BadDataException if b is ≤ a
+     * @throws Exception\BadDataException if b is ≤ a
      */
     public function __construct(int $a, int $b)
     {
