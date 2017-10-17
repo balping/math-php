@@ -54,10 +54,10 @@ class Weibull extends Continuous
      *
      * f(x) = 0                    for x < 0
      *
-     * @param number $x percentile (value to evaluate)
+     * @param float $x percentile (value to evaluate)
      * @return float
      */
-    public function pdf($x)
+    public function pdf(float $x)
     {
         Support::checkLimits(self::SUPPORT_LIMITS, ['x' => $x]);
         if ($x < 0) {
@@ -81,10 +81,10 @@ class Weibull extends Continuous
      * f(x) = 1 - ℯ⁻⁽x/λ⁾ for x ≥ 0
      * f(x) = 0           for x < 0
      *
-     * @param number $x percentile (value to evaluate)
+     * @param float $x percentile (value to evaluate)
      * @return float
      */
-    public function cdf($x)
+    public function cdf(float $x)
     {
         Support::checkLimits(self::SUPPORT_LIMITS, ['x' => $x]);
         if ($x < 0) {
@@ -118,11 +118,11 @@ class Weibull extends Continuous
      *
      * Q(p;k,λ) = λ(-ln(1 - p))¹/ᵏ
      *
-     * @param number $p
+     * @param float $p
      *
      * @return number
      */
-    public function inverse($p)
+    public function inverse(float $p)
     {
         Support::checkLimits(['p' => '[0,1]'], ['p' => $p]);
         $k = $this->k;
