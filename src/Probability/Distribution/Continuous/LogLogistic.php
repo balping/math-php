@@ -100,9 +100,6 @@ class LogLogistic extends Continuous
      * μ = --------  if β > 1, else undefined
      *     sin(π/β)
      *
-     * @param number $α scale parameter (α > 0)
-     * @param number $β shape parameter (β > 0)
-     *
      * @return number
      */
     public function mean()

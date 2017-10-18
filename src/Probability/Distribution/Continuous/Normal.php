@@ -30,11 +30,22 @@ class Normal extends Continuous
         'x' => '(-∞,∞)',
     ];
 
-    /** @var number Mean Parameter */
+    /** @var float Mean Parameter */
     protected $μ;
 
-    /** @var number Standard Deviation Parameter */
+    /** @var float Standard Deviation Parameter */
     protected $σ;
+
+    /**
+     * Normal constructor
+     *
+     * @param float $μ
+     * @param float $σ
+     */
+    public function __construct(float $μ, float $σ)
+    {
+        parent::__construct($μ, $σ);
+    }
 
     /**
      * Probability density function
