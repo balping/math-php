@@ -1165,7 +1165,7 @@ use MathPHP\Probability\Distribution\Multivariate;
 $αs        = [1, 2, 3];
 $xs        = [0.07255081, 0.27811903, 0.64933016];
 $dirichlet = new Multivariate\Dirichlet($αs);
-$pdf       = $dirichlet->pdf($xs, $αs);
+$pdf       = $dirichlet->pdf($xs);
 
 // Normal distribution
 $μ      = [1, 1.1];
