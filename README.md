@@ -1051,13 +1051,13 @@ $cdf     = $uniform->cdf($x);
 $μ       = $uniform->mean(b);
 
 // Weibull distribution
-$k   = 1; // shape parameter
-$λ   = 2; // scale parameter
-$x   = 2;
+$k       = 1; // shape parameter
+$λ       = 2; // scale parameter
+$x       = 2;
 $weibull = new Continuous\Weibull($k, $λ);
-$pdf = $weibull->pdf($x);
-$cdf = $weibull->cdf($x);
-$μ   = $weibull->mean();
+$pdf     = $weibull->pdf($x);
+$cdf     = $weibull->cdf($x);
+$μ       = $weibull->mean();
 
 // Other CDFs - All continuous distributions (...params will be distribution-specific)
 // Replace '$distribution' with desired distribution.
@@ -1075,15 +1075,19 @@ $random  = $distribution->rand(...$params);  // A random number with a given dis
 use MathPHP\Probability\Distribution\Discrete;
 
 // Bernoulli distribution (special case of binomial where n = 1)
-$pmf = Discrete\Bernoulli::pmf($r, $P);
-$cdf = Discrete\Bernoulli::cdf($r, $P);
+$p         = 0.3;
+$k         = 0;
+$bernoulli = new Discrete\Bernoulli($p);
+$pmf       = $bernoulli->pmf($k);
+$cdf       = $bernoulli->cdf($k);
 
 // Binomial distribution
-$n   = 2;   // number of events
-$r   = 1;   // number of successful events
-$P   = 0.5; // probability of success
-$pmf = Discrete\Binomial::pmf($n, $r, $P);
-$cdf = Discrete\Binomial::cdf($n, $r, $P);
+$n        = 2;   // number of events
+$p        = 0.5; // probability of success
+$r        = 1;   // number of successful events
+$binomial = new Discrete\Binomial($n, $p);
+$pmf      = $binomial->pmf($r);
+$cdf      = $binomial->cdf($r);
 
 // Categorical distribution
 $k             = 3; // number of categories
@@ -1093,51 +1097,64 @@ $pmf_a         = $categorical->pmf('a');
 $mode          = $categorical->mode();
 
 // Geometric distribution (failures before the first success)
-$k   = 2;   // number of trials
-$p   = 0.5; // success probability
-$pmf = Discrete\Geometric::pmf($k, $p);
-$cdf = Discrete\Geometric::cdf($k, $p);
+$p         = 0.5; // success probability
+$k         = 2;   // number of trials
+$geometric = new Discrete\Geometric($p);
+$pmf       = $geometric->pmf($k);
+$cdf       = $geometric->cdf($k);
 
 // Hypergeometric distribution
-$N   = 50; // population size
-$K   = 5;  // number of success states in the population
-$n   = 10; // number of draws
-$k   = 4;  // number of observed successes
-$pmf = Discrete\Hypergeometric::pmf($N, $K, $n, $k);
-$cdf = Discrete\Hypergeometric::cdf($N, $K, $n, $k);
-$μ   = Discrete\Hypergeometric::mean($N, $K, $n, $k);
+$N        = 50; // population size
+$K        = 5;  // number of success states in the population
+$n        = 10; // number of draws
+$k        = 4;  // number of observed successes
+$hypergeo = new Discrete\Hypergeometric($N, $K, $n);
+$pmf      = $hypergeo->pmf($k);
+$cdf      = $hypergeo->cdf($k);
+$μ        = $hypergeo->mean();
 
 // Multinomial distribution
 $frequencies   = [7, 2, 3];
 $probabilities = [0.40, 0.35, 0.25];
-$pmf = Discrete\Multinomial::pmf($frequencies, $probabilities);
+$multinomial   = new Discrete\Multinomial($probabilities);
+$pmf           = $multinomial->pmf($frequencies);
 
 // Negative binomial distribution (Pascal)
-$x   = 2;   // number of trials required to produce r successes
-$r   = 1;   // number of successful events
-$P   = 0.5; // probability of success on an individual trial
-$pmf = Discrete\NegativeBinomial::pmf($x, $r, $P);  // same as Pascal::pmf
-$pmf = Discrete\Pascal::pmf($x, $r, $P);            // same as NegativeBinomial::pmf
+$r                = 1;   // number of successful events
+$P                = 0.5; // probability of success on an individual trial
+$x                = 2;   // number of trials required to produce r successes
+$negativeBinomial = new Discrete\NegativeBinomial($r, $p);
+$pmf              = $negativeBinomial->pmf($x);
+
+// Pascal distribution (Negative binomial)
+$r      = 1;   // number of successful events
+$P      = 0.5; // probability of success on an individual trial
+$x      = 2;   // number of trials required to produce r successes
+$pascal = new Discrete\Pascal($r, $p);
+$pmf    = $pascal->pmf($x);
 
 // Poisson distribution
-$k   = 3; // events in the interval
-$λ   = 2; // average number of successful events per interval
-$pmf = Discrete\Poisson::pmf($k, $λ);
-$cdf = Discrete\Poisson::cdf($k, $λ);
+$λ       = 2; // average number of successful events per interval
+$k       = 3; // events in the interval
+$poisson = new Discrete\Poisson($λ);
+$pmf     = $poisson->pmf($k);
+$cdf     = $poisson->cdf($k);
 
 // Shifted geometric distribution (probability to get one success)
-$k   = 2;   // number of trials
-$p   = 0.5; // success probability
-$pmf = Discrete\ShiftedGeometric::pmf($k, $p);
-$cdf = Discrete\ShiftedGeometric::cdf($k, $p);
+$p                = 0.5; // success probability
+$k                = 2;   // number of trials
+$shiftedGeometric = new Discrete\ShiftedGeometric($p);
+$pmf              = $shiftedGeometric->pmf($k);
+$cdf              = $shiftedGeometric->cdf($k);
 
 // Uniform distribution
-$a   = 1; // lower boundary of the distribution
-$b   = 4; // upper boundary of the distribution
-$k   = 2; // percentile
-$pmf = Discrete\Uniform::pmf($a, $b);
-$cdf = Discrete\Uniform::cdf($a, $b, $k);
-$μ   = Discrete\Uniform::mean($a, $b);
+$a       = 1; // lower boundary of the distribution
+$b       = 4; // upper boundary of the distribution
+$k       = 2; // percentile
+$uniform = new Discrete\Uniform($a, $b);
+$pmf     = $uniform->pmf();
+$cdf     = $uniform->cdf($k);
+$μ       = $uniform->mean();
 ```
 
 ### Probability - Multivariate Distributions
