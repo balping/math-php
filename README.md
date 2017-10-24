@@ -1090,7 +1090,7 @@ $pmf      = $binomial->pmf($r);
 $cdf      = $binomial->cdf($r);
 
 // Categorical distribution
-$k             = 3; // number of categories
+$k             = 3;                                    // number of categories
 $probabilities = ['a' => 0.3, 'b' => 0.2, 'c' => 0.5]; // probabilities for categorices a, b, and c
 $categorical   = new Discrete\Categorical($k, $probabilities);
 $pmf_a         = $categorical->pmf('a');
@@ -1162,18 +1162,20 @@ $μ       = $uniform->mean();
 use MathPHP\Probability\Distribution\Multivariate;
 
 // Dirichlet distribution
-$xs  = [0.07255081, 0.27811903, 0.64933016];
-$αs  = [1, 2, 3];
-$pdf = Multivariate\Dirichlet::pdf($xs, $αs);
+$αs        = [1, 2, 3];
+$xs        = [0.07255081, 0.27811903, 0.64933016];
+$dirichlet = new Multivariate\Dirichlet($αs);
+$pdf       = $dirichlet->pdf($xs, $αs);
 
 // Normal distribution
-$X = [0.7, 1.4];
-$μ = [1, 1.1];
-$∑ = MatrixFactory::create([
+$μ      = [1, 1.1];
+$∑      = MatrixFactory::create([
     [1, 0],
     [0, 1],
 ]);
-$pdf = Multivariate\Normal::pdf($X, $μ, $∑);
+$X      = [0.7, 1.4];
+$normal = new Multivariate\Normal($μ, $∑);
+$pdf    = $normal->pdf($X);
 ```
 
 ### Probability - Distribution Tables
